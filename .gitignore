@@ -205,3 +205,54 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# LaTeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# LaTeX intermediate files
+*.dvi
+*.xdv
+*-converted-to.*
+
+# LaTeX bibliography files
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# LaTeX index files
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+
+# LaTeX misc
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+
+# LaTeX output that should be ignored for templates
+# (users may want to keep PDFs in their own repos)
+*.pdf
