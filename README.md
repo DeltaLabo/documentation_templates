@@ -144,3 +144,28 @@ Create or update your VS Code settings (`File` → `Preferences` → `Settings` 
 7. Test your template by compiling it, and make sure there are no errors
    - If there are warnings, properly explain them in your `README.md` file
 8. Open a pull request once you have completed your changes, and ask someone else to review and merge it
+
+### Repo folder structure
+
+```
+documentation_templates/
+├── common/ # For elements shared across multiple templates
+│   ├── images/
+│   │   └── delta_logo.png
+│   ├── bib/
+│   │   └── shared_refs.bib
+│   ├── data/
+│   │   └── members_table.tex # e.g. a table with all lab members
+│   └── classes/
+│       └── example_class_name/
+│           └── example_class.cls
+│           └── themes/
+│               └── example_theme_name/
+│                   └── example_theme.sty
+├── example_template/
+│   ├── example_template.tex
+│   ├── example_image.png
+│   ├── build.ps1 # Script that gets all dependencies from common/
+│   └── README.md # When and how to use the template
+└── README.md # Project root README
+```
