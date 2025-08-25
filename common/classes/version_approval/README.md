@@ -1,0 +1,27 @@
+# Version Approval Table
+
+A standard document version approval table.
+
+To use it, include this file in your main LaTeX document using `\input{...}`
+and then use the `\makeversionapprovaltable` command where you want the
+table to appear.
+ 
+This table looks best on single column document sections.
+
+You can set the data for the table using the following commands in your
+document's preamble:
+
+```latex
+\docid{XYZ-001}
+\version{1.0}
+\preparedby{John Doe}
+\preparedbydate{\today}
+\reviewedby{Jane Smith}
+\reviewedbydate{\today}
+\approvedby{Peter Jones}
+\approvedbydate{\today}
+...
+\begin{document}
+\makeversionapprovaltable
+...
+```
