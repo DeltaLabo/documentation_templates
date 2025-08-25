@@ -13,50 +13,49 @@
 %
 %   \docid{XYZ-001}
 %   \version{1.0}
+%   \docdate{\today}
 %   \preparedby{John Doe}
-%   \preparedbydate{\today}
-%   \reviewedby{Jane Smith}
-%   \reviewedbydate{\today}
 %   \approvedby{Peter Jones}
-%   \approvedbydate{\today}
 %   ...
 %   \begin{document}
 %   \makeversionapprovaltable
 %   ...
 
 \NeedsTeXFormat{LaTeX2e}
+\usepackage{array}
+\usepackage{multirow}
 
 % Provide commands to input versioning and approval data
 \makeatletter
 \providecommand{\docid}[1]{\def\@docid{#1}}
 \providecommand{\version}[1]{\def\@version{#1}}
 \providecommand{\preparedby}[1]{\def\@preparedby{#1}}
-\providecommand{\preparedbydate}[1]{\def\@preparedbydate{#1}}
-\providecommand{\reviewedby}[1]{\def\@reviewedby{#1}}
-\providecommand{\reviewedbydate}[1]{\def\@reviewedbydate{#1}}
 \providecommand{\approvedby}[1]{\def\@approvedby{#1}}
-\providecommand{\approvedbydate}[1]{\def\@approvedbydate{#1}}
+\providecommand{\observations}[1]{\def\@observations{#1}}
+\providecommand{\docdate}[1]{\def\@docdate{#1}}
 
 % Set default values to empty
 \docid{}
 \version{}
 \preparedby{}
-\preparedbydate{}
-\reviewedby{}
-\reviewedbydate{}
 \approvedby{}
-\approvedbydate{}
+\observations{}
+\docdate{}
 
 % Generate the version approval table
 \newcommand{\makeversionapprovaltable}{%
-  \begin{center}
-    \begin{tabular}{p{0.2\textwidth} p{0.40\textwidth} p{0.2\textwidth}}
-      \textbf{Document ID} & \multicolumn{2}{l}{\@docid} \\
-      \textbf{Version} & \multicolumn{2}{l}{\@version} \\
-      Prepared By & \@preparedby & \@preparedbydate \\
-      Reviewed By & \@reviewedby & \@reviewedbydate \\
-      Approved By & \@approvedby & \@approvedbydate \\
+  \centering
+    \begin{tabular}{|p{2.5cm}|p{1.3cm}|p{2.0cm}|p{2.5cm}|p{2.5cm}|p{2.2cm}|}
+      \hline
+      \textbf{Document ID} & \textbf{Version} & \textbf{Date} & \textbf{Prepared By} & \textbf{Approved By} & \textbf{Observations} \\
+      \hline
+      \@docid &
+      \@version &
+      \@docdate &
+      \@preparedby &
+      \@approvedby &
+      \@observations \\
+      \hline
     \end{tabular}
-  \end{center}
 }
 \makeatother
