@@ -139,11 +139,12 @@ Create or update your VS Code settings (`File` → `Preferences` → `Settings` 
 3. Create a new folder for your template, if needed
 4. Create a `README.md` file in your template folder (**DO NOT** modify the one at the repo root) explaining **when** and **how** to use your template
 5. Start development, structuring your work as commits
-   ' Do not hesitate to split your template between multiple `.tex` files if it improves usability
-   - Include all files and assets needed to compile your template
+   - Do not hesitate to split your template between multiple `.tex` files if it improves usability
 7. Test your template by compiling it, and make sure there are no errors
    - If there are warnings, properly explain them in your `README.md` file
-8. Open a pull request once you have completed your changes, and ask someone else to review and merge it
+   - Commit the test file, named as `test.tex`
+8. Create a `manifest.json` listing all files and assets needed to compile your template
+9. Open a pull request once you have completed your changes, and ask someone else to review and merge it
 
 ### Repo folder structure
 
@@ -156,16 +157,20 @@ documentation_templates/
 │   │   └── shared_refs.bib
 │   ├── data/
 │   │   └── members_table.tex # e.g. a table with all lab members
-│   └── classes/
+│   └── latex/
 │       └── example_class_name/
 │           └── example_class.cls
+│           ├── test.tex
+│           ├── manifest.json # List of dependencies from common/
+│           ├── README.md # When and how to use the template
 │           └── themes/
 │               └── example_theme_name/
 │                   └── example_theme.sty
 ├── example_template/
 │   ├── example_template.tex
 │   ├── example_image.png
-│   ├── build.ps1 # Script that gets all dependencies from common/
+│   ├── test.tex # Only needed if template .tex can't be compiled on its own
+│   ├── manifest.json # List of dependencies from common/
 │   └── README.md # When and how to use the template
 └── README.md # Project root README
 ```
