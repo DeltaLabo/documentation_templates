@@ -1,0 +1,71 @@
+% version_approval.tex
+%
+% This file provides a standard document version approval table.
+%
+% To use it, include this file in your main LaTeX document using \input{...}
+% and then use the \makeversionapprovaltable command where you want the
+% table to appear.
+% 
+% This table looks best on single column document sections.
+%
+% You can set the data for the table using the following commands in your
+% document's preamble:
+%   \docid{...}
+%   \version{...}
+%   \preparedby{...}
+%   \preparedbydate{...}
+%   \reviewedby{...}
+%   \reviewedbydate{...}
+%   \approvedby{...}
+%   \approvedbydate{...}
+%
+% Example:
+%   \docid{XYZ-001}
+%   \version{1.0}
+%   \preparedby{John Doe}
+%   \preparedbydate{\today}
+%   \reviewedby{Jane Smith}
+%   \reviewedbydate{\today}
+%   \approvedby{Peter Jones}
+%   \approvedbydate{\today}
+%   ...
+%   \begin{document}
+%   \makeversionapprovaltable
+%   ...
+
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide commands to input versioning and approval data
+\makeatletter
+\providecommand{\docid}[1]{\def\@docid{#1}}
+\providecommand{\version}[1]{\def\@version{#1}}
+\providecommand{\preparedby}[1]{\def\@preparedby{#1}}
+\providecommand{\preparedbydate}[1]{\def\@preparedbydate{#1}}
+\providecommand{\reviewedby}[1]{\def\@reviewedby{#1}}
+\providecommand{\reviewedbydate}[1]{\def\@reviewedbydate{#1}}
+\providecommand{\approvedby}[1]{\def\@approvedby{#1}}
+\providecommand{\approvedbydate}[1]{\def\@approvedbydate{#1}}
+
+% Set default values to empty
+\docid{}
+\version{}
+\preparedby{}
+\preparedbydate{}
+\reviewedby{}
+\reviewedbydate{}
+\approvedby{}
+\approvedbydate{}
+
+% Generate the version approval table
+\newcommand{\makeversionapprovaltable}{%
+  \begin{center}
+    \begin{tabular}{p{0.2\textwidth} p{0.40\textwidth} p{0.2\textwidth}}
+      \textbf{Document ID} & \multicolumn{2}{l}{\@docid} \\
+      \textbf{Version} & \multicolumn{2}{l}{\@version} \\
+      Prepared By & \@preparedby & \@preparedbydate \\
+      Reviewed By & \@reviewedby & \@reviewedbydate \\
+      Approved By & \@approvedby & \@approvedbydate \\
+    \end{tabular}
+  \end{center}
+}
+\makeatother
