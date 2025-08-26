@@ -1,0 +1,10 @@
+{
+    "dependencies": [
+        "../common/latex/delta_base_styles/delta_base_styles.cls",
+        "../common/latex/delta_header/delta_header.tex",
+        "../common/latex/equipment_table/equipment_table.tex",
+        "../common/latex/signature_table/signature_table.tex",
+        "../common/latex/version_approval_table/version_approval_table.tex"
+    ],
+    "publish": true
+}
