@@ -14,12 +14,9 @@ document's preamble:
 ```latex
 \docid{XYZ-001}
 \version{1.0}
+\docdate{\today}
 \preparedby{John Doe}
-\preparedbydate{\today}
-\reviewedby{Jane Smith}
-\reviewedbydate{\today}
 \approvedby{Peter Jones}
-\approvedbydate{\today}
 ...
 \begin{document}
 \makeversionapprovaltable
