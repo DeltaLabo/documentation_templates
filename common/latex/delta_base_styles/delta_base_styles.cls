@@ -1,9 +1,10 @@
 \LoadClass[a4paper,10pt]{article}
 
-\usepackage[backend=bibtex,style=ieee]{biblatex}
-\usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[backend=bibtex,style=ieee]{biblatex}
+\usepackage{csquotes}
+\usepackage[english]{babel}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{enumitem}
 \usepackage{fontawesome}
@@ -16,6 +17,7 @@
 \usepackage{array}
 \usepackage[absolute,overlay]{textpos}
 \usepackage{graphicx}
+\usepackage{import}
 
 % Colors
 \definecolor{primary}{RGB}{0,0,0}

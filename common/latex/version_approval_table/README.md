@@ -2,7 +2,7 @@
 
 A standard document version approval table.
 
-To use it, include this file in your main LaTeX document using `\input{...}`
+To use it, include this file in your main LaTeX document using `\subimport`
 and then use the `\makeversionapprovaltable` command where you want the
 table to appear.
  

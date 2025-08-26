@@ -7,7 +7,7 @@ This directory contains a reusable LaTeX command for creating a table of equipme
 To use the equipment table, you first need to include the `equipment_table.tex` file in your main LaTeX document:
 
 ```latex
-\input{common/latex/equipment_table/equipment_table.tex}
+\subimport{common/latex/equipment_table/}{equipment_table.tex}
 ```
 
 Then, you can use the `\equipmenttable` command to create a table. This command takes one argument, which is the body of the table. The table body should be a series of rows, with each row ending in `\\ \hline`.
