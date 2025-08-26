@@ -14,15 +14,18 @@ Each folder *may* contain:
 * `manifest.json`: A list of dependencies (images, other components or styles) and a boolean value determining if this folder should be published in the repo releases. 
 
 ## Dependencies
-**All** files apart from your main LaTeX file (the one with the same name as the folder) count as a dependency, even if it's in the same folder.
+**All** files apart from your main LaTeX file (the one with the same name as the folder) count as a dependency, even if it's in the same folder. List the exact files you need, not the folder they're in.
 
-List the exact files you need, not the folder they're in.
+Use relative paths from your template folder, not from the project root. Use `../` as many times as necessary. 
+
+If you are unsure about this, just copy and paste the file paths you used in your `.tex` file.
+Know that if imports work on your tests without having to manually move files around or manipulate import paths, they will work on the releases.
 
 ```json
 {
     "dependencies": [
-        "common/images/example_image.png",
-        "common/latex/example_component/example_component.tex"
+        "../common/images/example_image.png",
+        "../../common/latex/example_component/example_component.tex"
     ],
     "publish": false
 }

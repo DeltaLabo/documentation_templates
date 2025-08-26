@@ -141,12 +141,16 @@ Create or update your VS Code settings (`File` → `Preferences` → `Settings` 
 1. Start development, structuring your work as commits
    - Try to keep all your work in a single LaTeX file (`.tex`, `.cls`, or `.sty`), that way it's easier for others to import and use.
    - If you need to use multiple `.tex`, link them together in a single main file.
-   - Give your main file the same name as your folder.
+   - **IMPORTANT: Give your main file the same name as your folder.**
 1. Test your template by compiling it, and make sure there are no errors
    - If there are warnings, properly explain them in your `README.md` file
    - Commit the test file, named as `test.tex`
 1. Create a `manifest.json` listing all files and assets needed to compile your template
+   - Use `../` as many times as necessary when listing dependencies.
+   - Set the `publish` parameter to `true` if you want your template to be included in the releases.
 1. Open a pull request once you have completed your changes, and ask someone else to review and merge it
+
+See `common/latex/README.md` for more instructions for contributors.
 
 ### Repo folder structure
 
@@ -163,7 +167,7 @@ documentation_templates/
 │       └── example_class_name/
 │           └── example_class.cls
 │           ├── test.tex
-│           ├── manifest.json # List of dependencies from common/
+│           ├── manifest.json
 │           ├── README.md # When and how to use the template
 │           └── themes/
 │               └── example_theme_name/
@@ -171,8 +175,8 @@ documentation_templates/
 ├── example_template/
 │   ├── example_template.tex
 │   ├── example_image.png
-│   ├── test.tex # Only needed if template .tex can't be compiled on its own
-│   ├── manifest.json # List of dependencies from common/
+│   ├── test.tex
+│   ├── manifest.json
 │   └── README.md # When and how to use the template
 └── README.md # Project root README
 ```
