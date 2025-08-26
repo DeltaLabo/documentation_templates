@@ -32,6 +32,8 @@ List the exact files you need, not the folder they're in.
 If and only if `publish` is set to `true` in your `manifest.json` file, your template element will be published in the repo releases. All your dependencies will be automatically bundled.
 
 Folders without a `manifest.json` file will be ignored when generating releases.
+Even if not listed in the dependencies, the main file of each published folder will be automatically included in the release
+as long as it correctly has the same name as the folder.
 
 **If unsure, set this parameter to `false`.**
 
