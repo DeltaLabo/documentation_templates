@@ -1,9 +1,9 @@
 {
     "dependencies": [
-        "common/latex/beamer/themes/beamerthemeBruno/beamercolorthemeBruno",
-        "common/latex/beamer/themes/beamerthemeBruno/beamerfontthemeBruno",
-        "common/latex/beamer/themes/beamerthemeBruno/beamerouterthemeBruno",
-        "common/latex/beamer/themes/beamerthemeBruno/beamerinnerthemeBruno"
+        "beamercolorthemeBruno.sty",
+        "beamerfontthemeBruno.sty", 
+        "beamerouterthemeBruno.sty",
+        "beamerinnerthemeBruno.sty"
     ],
     "publish": true
 }

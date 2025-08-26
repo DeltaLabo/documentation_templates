@@ -256,3 +256,6 @@ __marimo__/
 # LaTeX output that should be ignored for templates
 # (users may want to keep PDFs in their own repos)
 *.pdf
+
+# Generated release folders
+releases/
