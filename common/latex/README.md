@@ -3,7 +3,7 @@
 This folder contains individual components (tables, headers, footers), document styles (fonts, headings. colors), classes, and class themes. 
 
 Each folder contains LaTeX code meant to be imported
-into instance documents by using `\documentclass` or `\input`, so it doesn't represent a standalone LaTeX document.
+into instance documents by using `\documentclass` or `\subimport` (do not `\input` outside tests), so it doesn't represent a standalone LaTeX document..
 
 Each folder **must** contain:
 * A main LaTeX file (`.tex`, `.cls`, or `.sty`) with the same name as the folder that contains all the functionality of your template element
@@ -48,7 +48,7 @@ You can use the following example to test components or styles:
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
 % Import your custom components or styles here
-\input(...)
+(...)
 
 \title{Example Test}
 \date{\vspace{-1.5cm}}
@@ -78,4 +78,18 @@ You can use the following template to test classes and themes:
 % Add some content and check that it compiles without errors
 
 \end{document}
+```
+
+## Imports
+To import other LaTeX files safely, usely `\subimport`.
+If you are using the `delta_base_class.cls` class, it's already included.
+If not, just add `\usepackage{import}` to your preamble.
+Afterwards, add the folder where you're importing the file from to `\graphicspath`.
+
+See the following example:
+
+```latex
+\subimport{../path/to/}{file.tex}
+\subimport{../../another/path/to/}{other_file.tex}
+\graphicspath{{../path/to/}{../../another/path/to/}}
 ```
