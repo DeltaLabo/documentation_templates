@@ -6,7 +6,7 @@ Each folder contains LaTeX code meant to be imported
 into instance documents by using `\documentclass` or `\input`, so it doesn't represent a standalone LaTeX document.
 
 Each folder **must** contain:
-* A main LaTeX file (`.tex` or `.cls`) with the same name as the folder that contains all the functionality of your template element
+* A main LaTeX file (`.tex`, `.cls`, or `.sty`) with the same name as the folder that contains all the functionality of your template element
 * `test.tex`: Minimum working example of an instance document 
 * `README.md`: When and how to use the component or style
 
