@@ -4,7 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[backend=bibtex,style=ieee]{biblatex}
 \usepackage{csquotes}
-\usepackage[spanish]{babel}
+\usepackage[english]{babel}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{enumitem}
 \usepackage{fontawesome}
