@@ -1,3 +1,6 @@
+\LoadClass[a4paper,10pt]{article}
+
+\usepackage[backend=bibtex,style=ieee]{biblatex}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -33,4 +36,3 @@
     linkcolor=primary,
     urlcolor=secondary
 }
-
