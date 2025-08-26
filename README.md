@@ -139,7 +139,9 @@ Create or update your VS Code settings (`File` → `Preferences` → `Settings` 
 3. Create a new folder for your template, if needed
 4. Create a `README.md` file in your template folder (**DO NOT** modify the one at the repo root) explaining **when** and **how** to use your template
 5. Start development, structuring your work as commits
-   - Do not hesitate to split your template between multiple `.tex` files if it improves usability
+   - Try to keep all your work in a single LaTeX file (`.tex` or `.cls`), that way it's easier for others to import and use.
+   - If you need to use multiple `.tex`, link them together in a single main file.
+   - Give your main file the same name as your folder.
 7. Test your template by compiling it, and make sure there are no errors
    - If there are warnings, properly explain them in your `README.md` file
    - Commit the test file, named as `test.tex`
