@@ -1,11 +1,19 @@
 \documentclass{../common/latex/delta_base_styles/delta_base_styles}
 
+\addbibresource{example_refs.bib}
+
 % Safe imports
 \subimport{../common/latex/delta_header/}{delta_header.tex}
 \subimport{../common/latex/equipment_table/}{equipment_table.tex}
 \subimport{../common/latex/signature_table/}{signature_table.tex}
 \subimport{../common/latex/version_approval_table/}{version_approval_table.tex}
-\graphicspath{{../common/latex/delta_header/}{../common/latex/equipment_table/}{../common/latex/signature_table/}{../common/latex/version_approval_table/}}
+\graphicspath{
+  {../common/latex/delta_base_styles/}
+  {../common/latex/delta_header/}
+  {../common/latex/equipment_table/}
+  {../common/latex/signature_table/}
+  {../common/latex/version_approval_table/}
+}
 
 % Set metadata
 \doctitle{Test Report Template}
@@ -124,7 +132,7 @@ Enter the official idem name or code
                 |>{\centering\arraybackslash}m{3.5cm}
                 |>{\centering\arraybackslash}m{3.5cm}
                 |>{\centering\arraybackslash}m{3.5cm}
-                |>{\centering\arraybackslash}m{3.5cm}|} % <- barra final añadida
+                |>{\centering\arraybackslash}m{3.5cm}|}
 \hline
 \textbf{Step} & \textbf{Input Condition} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Pass/Fail} \\
 \hline
@@ -137,6 +145,7 @@ Enter the official idem name or code
 \end{tabular}
 
 \section{Results}
+
 \subsection{Raw Data}
 \textcolor{DarkCyan} {Attach logs, oscilloscope screenshots, photos, or measurement sheets.}
 
@@ -151,10 +160,12 @@ Enter the official idem name or code
 
 \section{Signatures}
 
+\makeatletter
 \signatureTable{
-Name of the person & Role of the person & DD/MM/YYYY &         \\ 
+\@approvedby & Approver & \@docdate & \\ 
 \hline
 }
+\makeatother
 
 \section{Annexes}
 \textcolor{DarkCyan} {Include:}
