@@ -57,6 +57,23 @@ class ReleaseGenerator:
         
         return publishable
     
+    def validate_dependency_path(self, dep: str, manifest_folder: Path) -> None:
+        """Validate that a dependency path is relative to the manifest folder."""
+        # Check if the dependency path starts with absolute indicators
+        if dep.startswith('/') or (len(dep) > 2 and dep[1] == ':'):
+            raise ValueError(
+                f"Dependency '{dep}' in manifest at {manifest_folder} uses an absolute path. "
+                f"Dependencies must be relative to the manifest.json location."
+            )
+        
+        # Check if the dependency path goes to the project root or uses project-relative paths
+        if dep.startswith('common/') or dep.startswith('./common/'):
+            raise ValueError(
+                f"Dependency '{dep}' in manifest at {manifest_folder} appears to be relative to the project root. "
+                f"Dependencies must be relative to the manifest.json location. "
+                f"Use '../../../common/...' to reference files in the common directory."
+            )
+
     def resolve_dependencies_recursive(self, folder_path: Path, manifest: Dict, 
                                      resolved: Set[Path]) -> Set[Path]:
         """Recursively resolve all dependencies for a folder."""
@@ -69,6 +86,9 @@ class ReleaseGenerator:
         # Add dependencies from current manifest
         dependencies = manifest.get('dependencies', [])
         for dep in dependencies:
+            # Validate that the dependency path is properly formatted
+            self.validate_dependency_path(dep, folder_path)
+            
             # Resolve relative path from the folder containing the manifest
             dep_path = (folder_path / dep).resolve()
             
@@ -94,7 +114,10 @@ class ReleaseGenerator:
                     )
                     all_deps.update(sub_deps)
             else:
-                print(f"Warning: Dependency not found: {dep} (from {folder_path})")
+                raise FileNotFoundError(
+                    f"Dependency not found: '{dep}' (from manifest at {folder_path}). "
+                    f"Ensure the path is correct and relative to the manifest.json location."
+                )
         
         return all_deps
     
@@ -218,21 +241,29 @@ class ReleaseGenerator:
             folder_name = folder_path.name
             print(f"\nProcessing: {folder_name}")
             
-            # Create release folder
-            release_folder = self.releases_dir / folder_name
-            release_folder.mkdir()
-            
-            # Create common folder
-            common_folder = release_folder / "common"
-            common_folder.mkdir()
-            
-            # Resolve all dependencies
-            resolved = set()
-            dependencies = self.resolve_dependencies_recursive(
-                folder_path, manifest, resolved
-            )
-            
-            print(f"  Found {len(dependencies)} dependencies")
+            try:
+                # Create release folder
+                release_folder = self.releases_dir / folder_name
+                release_folder.mkdir()
+                
+                # Create common folder
+                common_folder = release_folder / "common"
+                common_folder.mkdir()
+                
+                # Resolve all dependencies
+                resolved = set()
+                dependencies = self.resolve_dependencies_recursive(
+                    folder_path, manifest, resolved
+                )
+                
+                print(f"  Found {len(dependencies)} dependencies")
+            except (ValueError, FileNotFoundError) as e:
+                print(f"  ERROR: {e}")
+                print(f"  Skipping {folder_name} due to manifest errors.")
+                # Remove the partially created folder
+                if release_folder.exists():
+                    shutil.rmtree(release_folder)
+                continue
             
             # Copy main file to release root
             try:
