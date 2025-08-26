@@ -146,6 +146,7 @@ Create or update your VS Code settings (`File` → `Preferences` → `Settings` 
    - If there are warnings, properly explain them in your `README.md` file
    - Commit the test file, named as `test.tex`
 1. Create a `manifest.json` listing all files and assets needed to compile your template
+   - Use `../` as many times as necessary when listing dependencies.
    - Set the `publish` parameter to `true` if you want your template to be included in the releases.
 1. Open a pull request once you have completed your changes, and ask someone else to review and merge it
 

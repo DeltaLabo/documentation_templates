@@ -16,7 +16,7 @@ Each folder *may* contain:
 ## Dependencies
 **All** files apart from your main LaTeX file (the one with the same name as the folder) count as a dependency, even if it's in the same folder. List the exact files you need, not the folder they're in.
 
-Use relative paths from your template folder, not from the project root. This might require crawling up folders multiple times (`../../...`). 
+Use relative paths from your template folder, not from the project root. Use `../` as many times as necessary. 
 
 If you are unsure about this, just copy and paste the file paths you used in your `.tex` file.
 Know that if imports work on your tests without having to manually move files around or manipulate import paths, they will work on the releases.
