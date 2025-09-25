@@ -78,15 +78,15 @@ Create or update your VS Code settings (`File` → `Preferences` → `Settings` 
 
 ### Setup instructions
 
-1. **Browse available templates**:
-   - Visit this repository to see available templates
+1. Download the latest release from the [Releases](https://github.com/DeltaLabo/documentation_templates/releases) page.
 
-1. **Clone the repo**:
-   - Clone the repository and locate the template folder you need
+1. Unzip the release file and open it in your file explorer.
+
+1. Browse the available templates and locate the one you need. All released templates include `README.md` files that can guide you.
 
 1. **Create a new document instance**:
-   - Copy all the contents of the folder that your desired template is located in to the location where you will work on the finalized document
-   - Write your document in the repository of the project that the document belongs to, **NOT** in this repo (`documentation_templates`)
+   - Copy all the contents of the folder that your desired template is located in to the location where you will work on the finalized document.
+   - Write your document in the repository of the project that the document belongs to, **NOT** in this repo (`documentation_templates`).
    - Apply Git best practices when writing your document, such as creating branches for important updates.
 
 ### Document Creation Workflow
