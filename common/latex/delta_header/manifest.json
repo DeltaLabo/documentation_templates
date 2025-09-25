@@ -1,5 +1,6 @@
 {
     "dependencies": [
+        "delta_header.tex",
         "../../../common/images/delta_logo_with_text_no_bg.png"
     ],
     "publish": false

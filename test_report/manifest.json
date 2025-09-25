@@ -1,5 +1,6 @@
 {
     "dependencies": [
+        "test_report.tex",
         "../common/latex/delta_base_styles/delta_base_styles.cls",
         "../common/latex/delta_header/delta_header.tex",
         "../common/latex/equipment_table/equipment_table.tex",

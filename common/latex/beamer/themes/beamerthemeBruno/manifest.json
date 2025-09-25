@@ -1,9 +1,11 @@
 {
     "dependencies": [
+        "beamerthemeBruno.sty",
         "beamercolorthemeBruno.sty",
         "beamerfontthemeBruno.sty",
         "beamerouterthemeBruno.sty",
-        "beamerinnerthemeBruno.sty"
+        "beamerinnerthemeBruno.sty",
+        "README.md"
     ],
     "publish": true
 }
