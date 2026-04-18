@@ -19,7 +19,6 @@ def create_test_report(data):
     doc.preamble.append(NoEscape(r'\subimport{../common/latex/equipment_table/}{equipment_table.tex}'))
     doc.preamble.append(NoEscape(r'\subimport{../common/latex/signature_table/}{signature_table.tex}'))
     doc.preamble.append(NoEscape(r'\subimport{../common/latex/version_approval_table/}{version_approval_table.tex}'))
-    # Aseguramos la ruta de las imágenes
     doc.preamble.append(NoEscape(r'\graphicspath{{../common/images/}{../common/latex/delta_header/}{./}}'))
 
     # Metadata
@@ -27,7 +26,7 @@ def create_test_report(data):
     doc.preamble.append(Command('docsubtitle', data['subtitle']))
     doc.preamble.append(Command('docid', data['doc_id']))
     doc.preamble.append(Command('version', data['version']))
-    doc.preamble.append(Command('docdate', data['date']))
+    doc.preamble.append(Command('date', data['date']))
     doc.preamble.append(Command('preparedby', data['prepared_by']))
     doc.preamble.append(Command('approvedby', data['approved_by']))
     doc.preamble.append(Command('observations', 'Automated Generation'))
@@ -148,4 +147,4 @@ def run_automation(csv_file):
             create_test_report({k.strip(): v.strip() for k, v in row.items()})
 
 if __name__ == "__main__":
-    run_automation('prueba.csv')
+    run_automation('test_reports_data.csv')
