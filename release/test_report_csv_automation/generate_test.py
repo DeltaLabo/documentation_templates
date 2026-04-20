@@ -187,9 +187,9 @@ def run_automation(csv_file):
     try:
         if os.path.exists(csv_file):
             os.remove(csv_file)
-            print(f"\n-> Proceso finalizado. Archivo de origen '{csv_file}' eliminado de la raíz.")
+            print(f"\n-> Process completed. Original file '{csv_file}' removed from the root directory.")
     except Exception as e:
-        print(f"Error al intentar eliminar el archivo original: {e}")
+        print(f"Error occurred while attempting to delete the original file: {e}")
 
 if __name__ == "__main__":
     run_automation('test_data.csv')
