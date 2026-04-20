@@ -21,9 +21,13 @@ Run the main automation script ("generate_test.py") to compile the PDF and organ
 ### Repo folder structure
 
 [Doc_ID]/
+
 ├── PDF/
+
 │   └── Report_[Doc_ID].pdf     # The finalized, compiled report
+
 └── CSV/
+
     └── test_data.csv           # A copy of the source data for traceability
 
 ## Prerequisites
