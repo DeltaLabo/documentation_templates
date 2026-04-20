@@ -1,44 +1,46 @@
 import csv
 import os
 import time
-import shutil # Needed to move the file
+import shutil 
 from pylatex import Document, Section, Subsection, Command, Itemize, Tabular, Enumerate
 from pylatex.utils import NoEscape
 
-def create_test_report(data):
+def create_test_report(data, original_csv_path):
     print(f"\n--- Processing Report ID: {data['doc_id']} ---")
     
-    # 1. Folder Setup
-    # We create the structure: output/PDF
+    #folder
     target_dir = os.path.join(data['doc_id'], 'PDF')
+    csv_dir = os.path.join(data['doc_id'], 'CSV')
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
+    if not os.path.exists(csv_dir):
+        os.makedirs(csv_dir)
 
-    # 2. Document Setup
+    #setup
     doc = Document(
-        documentclass=NoEscape('../common/latex/delta_base_styles/delta_base_styles'),
+        documentclass=NoEscape('../../common/latex/delta_base_styles/delta_base_styles'),
         fontenc='T1',
         inputenc='utf8',
         lmodern=True
     )
 
-    # 3. Preamble & Styles (Paths remain relative to the script location)
+    #styles  
     doc.preamble.append(Command('addbibresource', 'example_refs.bib'))
-    doc.preamble.append(NoEscape(r'\subimport{../common/latex/delta_header/}{delta_header.tex}'))
-    doc.preamble.append(NoEscape(r'\subimport{../common/latex/equipment_table/}{equipment_table.tex}'))
-    doc.preamble.append(NoEscape(r'\subimport{../common/latex/signature_table/}{signature_table.tex}'))
-    doc.preamble.append(NoEscape(r'\subimport{../common/latex/version_approval_table/}{version_approval_table.tex}'))
+    doc.preamble.append(NoEscape(r'\subimport{../../common/latex/delta_header/}{delta_header.tex}'))
+    doc.preamble.append(NoEscape(r'\subimport{../../common/latex/equipment_table/}{equipment_table.tex}'))
+    doc.preamble.append(NoEscape(r'\subimport{../../common/latex/signature_table/}{signature_table.tex}'))
+    doc.preamble.append(NoEscape(r'\subimport{../../common/latex/version_approval_table/}{version_approval_table.tex}'))
     
     doc.preamble.append(NoEscape(r'''\graphicspath{
-      {../common/latex/delta_base_styles/}
-      {../common/latex/delta_header/}
-      {../common/latex/equipment_table/}
-      {../common/latex/signature_table/}
-      {../common/latex/version_approval_table/}
-      {../common/images/}
+      {../../common/latex/delta_base_styles/}
+      {../../common/latex/delta_header/}
+      {../../common/latex/equipment_table/}
+      {../../common/latex/signature_table/}
+      {../../common/latex/version_approval_table/}
+      {../../common/images/}
     }'''))
 
-    # Metadata mapping
+    #data
     doc.preamble.append(Command('doctitle', data['title']))
     doc.preamble.append(Command('docsubtitle', data['subtitle']))
     doc.preamble.append(Command('docid', data['doc_id']))
@@ -48,7 +50,7 @@ def create_test_report(data):
     doc.preamble.append(Command('approvedby', data['approved_by']))
     doc.preamble.append(Command('observations', data['observations']))
 
-    # --- DOCUMENT BODY ---
+    #body
     doc.append(NoEscape(r'\makedeltaheader'))
     doc.append(NoEscape(r'\par\vspace{0.5cm}'))
 
@@ -92,7 +94,6 @@ def create_test_report(data):
             item.add_item(NoEscape(f"Humidity: {data['humidity']} %"))
         
         doc.append(Subsection('Test Equipment'))
-        # FIXED: Removed space before \hline to prevent "Misplaced \noalign" crash
         doc.append(Command('equipmenttable', NoEscape(data['equip_data'] + r'\\ \hline')))
 
     with doc.create(Section('Test Inputs, Outputs, and Acceptance Criteria')):
@@ -113,10 +114,8 @@ def create_test_report(data):
                            NoEscape(r'\textbf{Pass/Fail}')))
             table.add_hline()
             table.append(NoEscape(data['proc_table']))
-            # FIXED: Removed space before \hline to prevent "Misplaced \noalign" crash
             table.append(NoEscape(r'\\ \hline'))
 
-    # ... (Rest of your sections remain exactly the same)
     with doc.create(Section('Results')):
         doc.append(Subsection('Raw Data'))
         doc.append(NoEscape(data['results_raw']))
@@ -138,29 +137,33 @@ def create_test_report(data):
         with doc.create(Itemize()) as item:
             item.append(NoEscape(data['annexes_list']))
 
-    # --- GENERATION AND FILE MANAGEMENT ---
+    #generation
     file_base_name = f"Report_{data['doc_id']}"
+    csv_base_name = os.path.basename(original_csv_path)
     
     try:
         print(f"-> Generating PDF...")
-        # Step 1: Generate locally so ../common paths work
         doc.generate_pdf(file_base_name, clean_tex=False, compiler='pdflatex')
-        
-        # Step 2: Define Move logic
         generated_pdf = file_base_name + ".pdf"
-        final_destination = os.path.join(target_dir, generated_pdf)
-        
+        final_pdf_dest = os.path.join(target_dir, generated_pdf)
+        final_csv_dest = os.path.join(csv_dir, csv_base_name)
+
         if os.path.exists(generated_pdf):
-            if os.path.exists(final_destination):
-                os.remove(final_destination)
-            shutil.move(generated_pdf, final_destination)
-            print(f"SUCCESS: Moved to {final_destination}")
+            if os.path.exists(final_pdf_dest):
+                os.remove(final_pdf_dest)
+            shutil.move(generated_pdf, final_pdf_dest)
+            print(f"SUCCESS: PDF moved to {final_pdf_dest}")
+
+        if os.path.exists(original_csv_path):
+            if os.path.exists(final_csv_dest):
+                os.remove(final_csv_dest)
+            shutil.copy(original_csv_path, final_csv_dest)
+            print(f"SUCCESS: CSV copied to {final_csv_dest}")
 
     except Exception as e:
         print(f"LATEX ERROR: {e}")
         
     finally:
-        # Cleanup LaTeX trash in the current directory
         time.sleep(1)
         garbage = ['.aux', '.log', '.out', '.toc', '.fdb_latexmk', '.fls', '.run.xml', '.bcf', '.blg', '.bbl', '.tex', '-blx.bib', '.bib']
         for ext in garbage:
@@ -170,14 +173,23 @@ def create_test_report(data):
                 except: pass
 
 def run_automation(csv_file):
+    rows_to_process = []
     if not os.path.exists(csv_file):
         print(f"CSV Not Found: {csv_file}")
         return
+
     with open(csv_file, mode='r', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            clean_row = {k.strip(): v.strip() for k, v in row.items()}
-            create_test_report(clean_row)
+            rows_to_process.append({k.strip(): v.strip() for k, v in row.items()})
+    for data in rows_to_process:
+        create_test_report(data, csv_file)
+    try:
+        if os.path.exists(csv_file):
+            os.remove(csv_file)
+            print(f"\n-> Proceso finalizado. Archivo de origen '{csv_file}' eliminado de la raíz.")
+    except Exception as e:
+        print(f"Error al intentar eliminar el archivo original: {e}")
 
 if __name__ == "__main__":
-    run_automation('test.csv')
+    run_automation('test_data.csv')
