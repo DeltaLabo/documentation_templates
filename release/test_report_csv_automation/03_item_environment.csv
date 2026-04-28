@@ -1,0 +1,2 @@
+doc_id,item_name,item_sn,item_mfr,item_config,temp,humidity
+TEST-001,DUT Power Module,DUT-SN-12345,DeltaLabo,HW v2.1,25.0,50.0
