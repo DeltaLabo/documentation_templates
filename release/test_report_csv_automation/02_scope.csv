@@ -1,2 +1,2 @@
 doc_id,purpose_obj,purpose_limits,purpose_focus,ref_standards,definitions
-TEST-002,Verify electrical stability under full load,Limited to the secondary power stage,Focus on ripple voltage and calibration traceability,"ISO 29119-3; IEC 60068","\item \textbf{DUT:} Device Under Test \item \textbf{EUT:} Equipment Under Test"
+TEST-001,Verify electrical stability under full load,Limited to the secondary power stage,Focus on ripple voltage and calibration traceability,"ISO 29119-3; IEC 60068","\item \textbf{DUT:} Device Under Test \item \textbf{EUT:} Equipment Under Test"
