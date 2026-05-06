@@ -1,0 +1,2 @@
+doc_id,results_raw,results_analysis,conclusion_res,conclusion_obs,annexes_list
+TEST-001,Data logs attached in Annex A,The DUT showed excellent stability under full load.,PASSED,No thermal drifting observed.,"\item Test circuit diagrams \item Calibration certificates"

@@ -1,0 +1,2 @@
+doc_id,equip_data,inputs,outputs,criteria,proc_table
+TEST-001,1 & Multimeter & 34465A & Keysight & 2024-02-15 & XYZ123 & High precision,12V DC Input / 5A Load,Sinusoidal output response,Tolerance +/- 0.5V,"1 & Startup & 12V In / 0A Out & 12.01V & Pass \\ \hline 2 & Full Load & 12V In / 5A Out & 11.95V & Pass"
